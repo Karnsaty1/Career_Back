@@ -18,7 +18,7 @@ app.use(helmet.contentSecurityPolicy({
 
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://project-alumni-4ly1w7cc4-satyam-karns-projects.vercel.app'],
+  origin: ['http://localhost:3000', 'https://project-alumni.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
