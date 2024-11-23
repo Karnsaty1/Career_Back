@@ -1,10 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for the project deployed on Vercel",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vercel dev",         
+    "build": "vercel build",     
+    "start": "vercel dev"        
   },
   "author": "",
   "license": "ISC",
