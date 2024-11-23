@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://project-alumni.vercel.app'],
+  origin: ['http://localhost:3000', 'https://project-alumni-im3qby79d-satyam-karns-projects.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
