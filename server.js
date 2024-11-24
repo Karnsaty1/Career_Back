@@ -10,17 +10,15 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"], 
-        scriptSrc: ["'self'", 'https://vercel.live'], 
-        connectSrc: ["'self'", 'https://vercel.live'],
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://vercel.live'], 
+        connectSrc: ["'self'", 'https://vercel.live'], 
         styleSrc: ["'self'", "'unsafe-inline'"], 
         imgSrc: ["'self'", 'data:'], 
-        frameSrc: ["'self'"], 
       },
     },
   })
 );
-
 // CORS configuration
 const corsOptions = {
   origin: ['http://localhost:3000', process.env.FRONTEND_URL],
