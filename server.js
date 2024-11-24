@@ -10,7 +10,7 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'",'https://vercel.live'],
+        defaultSrc: ["'self'"],
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
@@ -20,6 +20,7 @@ app.use(
         ], 
         scriptSrcElem: [
           "'self'",
+          'https://vercel.live',
           'https://vercel.live/_next-live/feedback/feedback.js', 
         ],
         connectSrc: ["'self'", 'https://vercel.live'],
