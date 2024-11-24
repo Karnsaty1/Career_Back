@@ -21,7 +21,7 @@ app.use(
 );
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', process.env.FRONTEND_URL],
+  origin: ['http://localhost:3000', 'https://career-connect-one.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
