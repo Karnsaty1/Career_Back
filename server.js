@@ -6,14 +6,16 @@ const cookieParser = require('cookie-parser');
 
 const helmet = require('helmet'); 
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"], 
-    scriptSrc: ["'self'", 'https://vercel.live'], 
-    connectSrc: ["'self'", 'https://vercel.live'], 
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     defaultSrc: ["'self'"], 
+//     scriptSrc: ["'self'", 'https://vercel.live'], 
+//     connectSrc: ["'self'", 'https://vercel.live'], 
     
-  },
-}));
+//   },
+// }));
+
+app.use(helmet());
 
 
 // CORS configuration
