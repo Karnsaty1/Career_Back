@@ -3,24 +3,27 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
-const helmet = require('helmet'); 
-
-// app.use(helmet.contentSecurityPolicy({
-//   directives: {
-//     defaultSrc: ["'self'"], 
-//     scriptSrc: ["'self'", 'https://vercel.live'], 
-//     connectSrc: ["'self'", 'https://vercel.live'], 
-    
-//   },
-// }));
-
-app.use(helmet());
-
+// Customized Helmet CSP configuration
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"], 
+        scriptSrc: ["'self'", 'https://vercel.live'], 
+        connectSrc: ["'self'", 'https://vercel.live'],
+        styleSrc: ["'self'", "'unsafe-inline'"], 
+        imgSrc: ["'self'", 'data:'], 
+        frameSrc: ["'self'"], 
+      },
+    },
+  })
+);
 
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://project-alumni.vercel.app'],
+  origin: ['http://localhost:3000', process.env.FRONTEND_URL],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -47,7 +50,7 @@ const { connectDB } = require('./db');
   } catch (error) {
     console.error('Error connecting to database:', error);
   }
-});
+})();
 
 // Error-handling middleware
 app.use((err, req, res, next) => {
