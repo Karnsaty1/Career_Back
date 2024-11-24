@@ -11,17 +11,28 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://vercel.live'], 
-        connectSrc: ["'self'", 'https://vercel.live'], 
-        styleSrc: ["'self'", "'unsafe-inline'"], 
-        imgSrc: ["'self'", 'data:'], 
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          'https://vercel.live',
+          'https://vercel.live/_next-live/feedback/feedback.js',
+        ], 
+        scriptSrcElem: [
+          "'self'",
+          'https://vercel.live/_next-live/feedback/feedback.js', 
+        ],
+        connectSrc: ["'self'", 'https://vercel.live'],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:'],
       },
     },
   })
 );
+
 // CORS configuration
 const corsOptions = {
-  origin: ['http://localhost:3000', process.env.FRONTEND_URL],
+  origin: ['http://localhost:3000', 'https://career-connect-one.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -56,5 +67,4 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong!');
 });
 
-// Export the app as a handler for Vercel's serverless function
 module.exports = app;
