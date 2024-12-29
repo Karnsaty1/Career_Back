@@ -87,10 +87,7 @@ Router.get('/fetchPost', async (req, res) => {
         return res.status(500).send("Internal Server Error");
     }
 });
-
-
-
-Router.post('/donate', async (req, res) => {
+Router.post('/addStory', async (req, res) => {
     try {
         // const token = req.headers['authorization']?.split(' ')[1];
         const token = req.cookies['authToken'];
@@ -99,14 +96,14 @@ Router.post('/donate', async (req, res) => {
 
         verifyToken(token);
 
-        const { name, email } = req.body;
-        const document = { name, email };
-        const userCollection = getDb('donators');
+        const { userName, email,description,title } = req.body;
+        const document = { userName, email,description,title };
+        const userCollection = getDb('stories');
         const result = await userCollection.insertOne(document);
         if (result.acknowledged) {
-            return res.status(200).json({ 'message': 'Document Inserted For Donator Successfully !!!' });
+            return res.status(200).json({ 'message': 'Document Inserted Successfully !!!' });
         }
-        return res.status(500).json({ 'message': 'Failed To Insert Document For Donator' });
+        return res.status(500).json({ 'message': 'Failed To Insert Document' });
     } catch (error) {
         console.error(error.message);
         if (error.message === 'Invalid Token' || error.message === 'Token Expired') {
@@ -115,6 +112,18 @@ Router.post('/donate', async (req, res) => {
         return res.status(500).send("Internal Server Error");
     }
 });
+
+Router.get('/getProfile/:userName',async(req,res)=>{
+    try {
+        const collectionName=getDb('stories');
+        const userName=req.params;
+        console.log("WWWEEEE",userName.userName);
+        const data=await collectionName.find({userName:userName.userName}).toArray();
+        return res.status(200).json({'data':data});
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 Router.get('/events', async (req, res) => {
     try {
@@ -155,6 +164,30 @@ Router.get('/success',async (req,res)=>{
     console.log(error);
     return res.status(500).json({error : 'Internal Server Error !!! '});
    }
+});
+
+
+Router.get('/prep',async (req,res)=>{   
+   try{ const collectionName=getDb('Preps');
+    const data=await collectionName.find().toArray();
+    console.log(data);
+    return res.status(200).send({topics:data});}
+    catch(error){
+        console.log(error);
+    }
+})
+
+Router.get('/prepDetail/:topic',async (req,res)=>{   
+   try{ 
+    const title = req.params.topic;
+    console.log(title);
+    const collectionName=getDb(title);
+    const data=await collectionName.find().toArray();
+    console.log(data);
+    return res.status(200).send({topics:data});}
+    catch(error){
+        console.log(error);
+    }
 });
 
 Router.get('/verifyToken',async(req,res)=>{
