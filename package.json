@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx vercel dev",
-    "start": "node api/index.js"
+    "dev": "PORT=3001 npx vercel dev",  
+    "start": "node api/index.js",  
+    "client": "npm run start --prefix client"  
   },
   "author": "",
   "license": "ISC",
