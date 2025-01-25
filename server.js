@@ -34,7 +34,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: '*',
+  origin: ['https://vercel.com/satyam-karns-projects/carrer-front/H2tmTnuTqEjb6Zb9uukLJXJVi7tj','https://carrer-front-seven.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
