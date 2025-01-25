@@ -115,7 +115,7 @@ Router.post('/logIn', async (req, res) => {
     res.status(200).json({msg:'OTP has been sent to your email. Please verify to proceed.'});
   } catch (error) {
     console.log(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({'Internal Server Error':error});
   }
 });
 
