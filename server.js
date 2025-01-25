@@ -34,7 +34,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: [process.env.FRONTEND_URL,'http://localhost:3000'],
+  origin: [process.env.FRONTEND_URL,'http://localhost:3000','https://carrer-front-seven.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
