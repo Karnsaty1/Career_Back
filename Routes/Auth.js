@@ -58,7 +58,7 @@ Router.post('/verifyOTP', async (req, res) => {
     const token = jwt.sign(payload, SecretKey, { expiresIn: '1h' });
     
     res.cookie('authToken', token, {
-      httpOnly: false,
+      httpOnly: true,
       secure: true, 
       sameSite: 'None', 
       path:'/',
@@ -73,7 +73,7 @@ Router.post('/verifyOTP', async (req, res) => {
     });
     
     res.cookie('userName', user.userName, {
-      httpOnly: false,
+      httpOnly: true,
       secure: true, 
       sameSite: 'None', 
       path:'/',
