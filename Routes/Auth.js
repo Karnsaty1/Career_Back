@@ -65,7 +65,7 @@ Router.post('/verifyOTP', async (req, res) => {
       maxAge: 3600000 
     });
     res.cookie('email', email, {
-      httpOnly: false,
+      httpOnly: true,
       secure: true, 
       sameSite: 'None', 
       path:'/',
